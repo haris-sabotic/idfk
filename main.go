@@ -117,6 +117,31 @@ func answerPOST(c *gin.Context) {
 	})
 }
 
+func createTablesPOST(c *gin.Context) {
+	sqlStmt := `
+	CREATE TABLE answers (
+		id INTEGER AUTO_INCREMENT PRIMARY KEY,
+		name TEXT,
+		city TEXT,
+		age INTEGER,
+		mail TEXT,
+		points INTEGER,
+		submitDate DATETIME,
+		question1Answer INTEGER,
+		question2Answer INTEGER
+	  );
+	`
+
+	_, err := DB.Exec(sqlStmt)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"message": "DB create table failure",
+			"error":   err.Error(),
+		})
+		return
+	}
+}
+
 func main() {
 	var err error
 	url := os.Getenv("DB_URL")
@@ -137,6 +162,8 @@ func main() {
 	router := gin.New()
 	router.POST("/send", answerPOST)
 	router.GET("/answers", answerGET)
+
+	router.POST("/create-tables", createTablesPOST)
 
 	port := os.Getenv("PORT")
 	if port == "" {
