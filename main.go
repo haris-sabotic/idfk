@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	_ "github.com/lib/pq"
+	"github.com/lib/pq"
 )
 
 var DB *sql.DB
@@ -119,7 +119,12 @@ func answerPOST(c *gin.Context) {
 
 func main() {
 	var err error
-	DB, err = sql.Open("postgres", "user="+os.Getenv("DB_USER")+" password="+os.Getenv("DB_PASSWORD")+"dbname="+os.Getenv("DB_NAME")+" sslmode=verify-full")
+	url := os.Getenv("DB_URL")
+	connection, _ := pq.ParseURL(url)
+	connection += " sslmode=require"
+
+	// DB, err = sql.Open("postgres", "user="+os.Getenv("DB_USER")+" password="+os.Getenv("DB_PASSWORD")+"dbname="+os.Getenv("DB_NAME")+" sslmode=verify-full")
+	DB, err = sql.Open("postgres", connection)
 	if err != nil {
 		panic(err)
 	}
