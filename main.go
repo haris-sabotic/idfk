@@ -120,7 +120,7 @@ func answerPOST(c *gin.Context) {
 func createTablesPOST(c *gin.Context) {
 	sqlStmt := `
 	CREATE TABLE answers (
-		id INTEGER AUTO_INCREMENT PRIMARY KEY,
+		id SERIAL PRIMARY KEY,
 		name TEXT,
 		city TEXT,
 		age INTEGER,
