@@ -119,7 +119,7 @@ func answerPOST(c *gin.Context) {
 
 func main() {
 	var err error
-	DB, err = sql.Open("postgres", "user="+os.Getenv("DB_USER")+" password="+os.Getenv("DB_PASSWORD")+"dbname=idfk sslmode=verify-full")
+	DB, err = sql.Open("postgres", "user="+os.Getenv("DB_USER")+" password="+os.Getenv("DB_PASSWORD")+"dbname="+os.Getenv("DB_NAME")+" sslmode=verify-full")
 	if err != nil {
 		panic(err)
 	}
