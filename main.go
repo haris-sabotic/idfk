@@ -59,6 +59,15 @@ func answerGET(c *gin.Context) {
 			return
 		}
 
+		q1 := "NE"
+		q2 := "NE"
+		if question1Answer == 1 {
+			q1 = "DA"
+		}
+		if question2Answer == 1 {
+			q2 = "DA"
+		}
+
 		result = append(result, gin.H{
 			"id":              id,
 			"name":            name,
@@ -67,8 +76,8 @@ func answerGET(c *gin.Context) {
 			"mail":            mail,
 			"points":          points,
 			"submitDate":      submitDate,
-			"question1Answer": question1Answer,
-			"question2Answer": question2Answer,
+			"question1Answer": q1,
+			"question2Answer": q2,
 		})
 	}
 
