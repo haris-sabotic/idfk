@@ -45,12 +45,13 @@ func answerGET(c *gin.Context) {
 		var city string
 		var age int
 		var mail string
+		var sex string
 		var points int
 		var submitDate string
 		var question1Answer int
 		var question2Answer int
 
-		err = rows.Scan(&id, &name, &city, &age, &mail, &points, &submitDate, &question1Answer, &question2Answer)
+		err = rows.Scan(&id, &name, &city, &age, &mail, &sex, &points, &submitDate, &question1Answer, &question2Answer)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
 				"message": "DB row scan failure",
@@ -74,6 +75,7 @@ func answerGET(c *gin.Context) {
 			"city":            city,
 			"age":             age,
 			"mail":            mail,
+			"sex":             sex,
 			"points":          points,
 			"submitDate":      submitDate,
 			"question1Answer": q1,
