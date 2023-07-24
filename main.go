@@ -47,7 +47,7 @@ func answerGET(c *gin.Context) {
 		var mail string
 		var sex string
 		var points int
-		var submitDate string
+		var submitDate time.Time
 		var question1Answer int
 		var question2Answer int
 
@@ -77,7 +77,7 @@ func answerGET(c *gin.Context) {
 			"mail":            mail,
 			"sex":             sex,
 			"points":          points,
-			"submitDate":      submitDate,
+			"submitDate":      submitDate.Format(time.DateOnly),
 			"question1Answer": q1,
 			"question2Answer": q2,
 		})
