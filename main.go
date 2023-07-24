@@ -103,11 +103,12 @@ func answerPOST(c *gin.Context) {
 	}
 
 	_, err = DB.Exec(
-		"INSERT INTO answers(name,city,age,mail,points,submitDate,question1Answer,question2Answer) VALUES($1,$2,$3,$4,$5,$6,$7,$8);",
+		"INSERT INTO answers(name,city,age,mail,sex,points,submitDate,question1Answer,question2Answer) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9);",
 		jsonData["name"],
 		jsonData["city"],
 		jsonData["age"],
 		jsonData["mail"],
+		jsonData["sex"],
 		jsonData["points"],
 		time.Now(),
 		q1,
