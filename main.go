@@ -109,7 +109,7 @@ func answerPOST(c *gin.Context) {
 		jsonData["age"],
 		jsonData["mail"],
 		jsonData["points"],
-		time.Now().Format("1999-01-08"),
+		time.Now(),
 		q1,
 		q2,
 	)
@@ -134,6 +134,7 @@ func createTablesPOST(c *gin.Context) {
 		city TEXT,
 		age INTEGER,
 		mail TEXT,
+		sex TEXT,
 		points INTEGER,
 		submitDate DATE,
 		question1Answer INTEGER,
