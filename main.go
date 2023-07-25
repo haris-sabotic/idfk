@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
 )
@@ -173,6 +174,7 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 
 	router := gin.New()
+	router.Use(cors.Default())
 	router.POST("/send", answerPOST)
 	router.GET("/answers", answerGET)
 
